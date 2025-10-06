@@ -7,7 +7,9 @@ sidebar:
 
 import { Render } from "~/components";
 
-Cloudflare has automatically instrumented fetch calls and requests to Cloudflare resources (e.g. Workers KV, D1 Databases, Durable Objects) bound to your Workers application, without requiring you to install and configure an OpenTelemetry SDK. 
+Cloudflare Workers provides automatic tracing instrumentation **out of the box** - no code changes or no SDK installation required. While we are continuing to expand our instrumentation, you can find a list of available spans and attributes below.
+
+## Currently supported spans and attributes 
 
 ### [Runtime API](/workers/runtime-apis/)
 
@@ -411,9 +413,10 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 ### [Dispatch Namespace](/workers/runtime-apis/bindings/dispatch-namespace/)
 
 #### [`wfp_get`](/cloudflare-for-platforms/workers-for-platforms/get-started/dynamic-dispatch/#configure-the-dispatch-namespace-binding)
-
+- `cloudflare.dispatch_namespace`
 - `cloudflare.binding.type`
 - `error.type`
+
 
 ---
 
@@ -603,28 +606,25 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 ---
 
 ### Attributes available on all spans 
-- `cloud.provider`
-- `cloud.platform`
-- `cloud.region`
-- `faas.name`
-- `faas.invocation_id`
-- `faas.version`
-- `faas.max_memory`
-- `faas.invoked_region`
-- `service.name`
-- `cloudflare.colo`
-- `cloudflare.script_name`
-- `cloudflare.script_tags`
-- `cloudflare.script_version.tag`
-- `cloudflare.script_version.message`
-- `cloudflare.script_version.id`
-- `telemetry.sdk.language`
-- `telemetry.sdk.name`
 
-### Attributes availabe on all root spans
+- `cloud.provider` - Always set to `cloudflare`
+- `cloud.platform` - Always set to `cloudflare.workers`
+- `faas.name` - The name of your Worker 
+- `faas.invocation_id` - A unique identifier for this specific Worker invocation
+- `faas.version` - The deployed version tag of your Worker
+- `faas.invoked_region` - The region where the Worker was invoked
+- `service.name` - The name of your Worker
+- `cloudflare.colo` - The three-letter IATA airport code of the Cloudflare data center that processed the request (e.g., `SFO`, `LHR`)
+- `cloudflare.script_name` - The name of your Worker
+- `cloudflare.script_tags` - Tags associated with your Worker deployment
+- `cloudflare.script_version.id` - The version identifier of your deployed Worker
+- `telemetry.sdk.language` - The programming language used, set to `javascript`
+- `telemetry.sdk.name` - The telemetry SDK name, set to `cloudflare`
 
-- `faas.trigger`
-- `cloudflare.dispatch_namespace`
-- `cloudflare.entrypoint`
-- `cloudflare.execution_model`
-- `cloudflare.handler_type`
+### Attributes available on all root spans
+
+- `faas.trigger` - The trigger that your Worker was invoked by (e.g., `http`, `cron`, `queue`, `email`)
+- `cloudflare.handler_type` - The type of handler that processed the request (e.g., `fetch`, `scheduled`, `queue`, `email`, `alarm`)
+- `cloudflare.entrypoint` - The entrypoint that was invoked in your Worker (e.g. the name of your Durable Object)
+- `cloudflare.execution_model` - The execution model of the Worker (e.g., `stateless`, `stateful` for Durable Objects)
+
