@@ -41,11 +41,32 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### Runtime Bindings
+### Runtime API
 
 #### `fetch`
 
+- `network.protocol.name`
+- `network.protocol.version`
+- `url.full`
+- `url.scheme`
+- `url.path`
+- `url.query`
+- `server.port`
+- `server.address`
+- `user_agent.original`
+- `http.request.method`
+- `http.request.header.content-type`
+- `http.request.header.content-length`
+- `http.request.header.accept`
+- `http.request.header.accept-encoding`
+- `http.request.body.size`
+- `http.response.status_code`
+- `http.response.body.size`
+
 #### `cache_put`
+
+- `cache_control.expiration`
+- `cache_control.revalidation`
 
 #### `cache_match`
 
@@ -57,17 +78,67 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `[common]`
 
+- `cloudflare.outcome`
+- `cloudflare.cpu_time`
+- `cloudflare.wall_time`
+- `cloudflare.cold_start_ms`
+- `faas.trigger`
+- `faas.cold_start`
+- `cloudflare.ray_id`
+- `cloudflare.verified_bot_category`
+- `cloudflare.asn`
+- `cloudflare.response.time_to_first_byte_ms`
+- `geo.timezone`
+- `geo.continent.code`
+- `geo.country.code`
+- `geo.locality.name`
+- `geo.locality.region`
+- `user_agent.orginal`
+- `user_agent.os.name`
+- `user_agent.os.version`
+- `user_agent.browser.name`
+- `user_agent.browser.major_version`
+- `user_agent.browser.version`
+- `user_agent.engine.name`
+- `user_agent.engine.version`
+- `user_agent.device.type`
+- `user_agent.device.vendor`
+- `user_agent.device.model`
+- `http.request.method`
+- `http.request.header.accept`
+- `http.request.header.accept-encoding`
+- `http.request.header.accept-language`
+- `url.full`
+- `url.path`
+- `network.protocol.name`
+
 #### `Scheduled Handler`
+
+- `faas.cron`
+- `cloudflare.scheduled_time`
 
 #### `QueueHandler`
 
+- `cloudflare.queue.name`
+- `cloudflare.queue.batch_size`
+
 #### `JSRPC Handler`
+
+- `cloudflare.jsrpc.method`
 
 #### `EmailHandler`
 
+- `cloudflare.email.from`
+- `cloudflare.email.to`
+- `cloudflare.email.size`
+
 #### `Trace Handler`
 
+- `cloudflare.trace.count`
+
 #### `AlarmHandler`
+
+- `cloudflare.scheduled_time`
 
 ---
 
@@ -75,17 +146,51 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `[common]`
 
+- `db.system.name`
+- `db.operation.name`
+- `db.query.text`
+- `cloudflare.binding.type`
+- `cloudflare.binding.name`
+- `cloudflare.d1.response.size_after`
+- `cloudflare.d1.response.rows_read`
+- `cloudflare.d1.response.rows_written`
+- `cloudflare.d1.response.last_row_id`
+- `cloudflare.d1.response.changed_db`
+- `cloudflare.d1.response.changes`
+- `cloudflare.d1.response.served_by_region`
+- `cloudflare.d1.response.served_by_primary`
+- `cloudflare.d1.response.sql_duration_ms`
+- `cloudflare.d1.response.total_attempts`
+
 #### `d1_batch`
+
+- `db.operation.batch.size`
+- `cloudflare.d1.query.bookmark`
+- `cloudflare.d1.response.bookmark`
 
 #### `d1_exec`
 
+- `N/A`
+
 #### `d1_first`
+
+- `cloudflare.d1.query.bookmark`
+- `cloudflare.d1.response.bookmark`
 
 #### `d1_run`
 
+- `cloudflare.d1.query.bookmark`
+- `cloudflare.d1.response.bookmark`
+
 #### `d1_all`
 
+- `cloudflare.d1.query.bookmark`
+- `cloudflare.d1.response.bookmark`
+
 #### `d1_raw`
+
+- `cloudflare.d1.query.bookmark`
+- `cloudflare.d1.response.bookmark`
 
 #### `browser_rendering_fetch`
 
@@ -103,15 +208,60 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `[common]`
 
+- `db.system.name`
+- `db.operation.name`
+- `cloudflare.binding.name`
+- `cloudflare.binding.type`
+- `error.type`
+
 #### `kv_get`
+
+- `cloudflare.kv.query.keys`
+- `cloudflare.kv.query.keys.count`
+- `cloudflare.kv.query.type`
+- `cloudflare.kv.query.cache_ttl`
+- `cloudflare.kv.response.size`
+- `cloudflare.kv.response.returned_rows`
+- `cloudflare.kv.response.metadata`
+- `cloudflare.kv.response.cache_status`
 
 #### `kv_getWithMetadata`
 
+- `cloudflare.kv.query.keys`
+- `cloudflare.kv.query.keys.count`
+- `cloudflare.kv.query.type`
+- `cloudflare.kv.query.cache_ttl`
+- `cloudflare.kv.response.size`
+- `cloudflare.kv.response.returned_rows`
+- `cloudflare.kv.response.metadata`
+- `cloudflare.kv.response.cache_status`
+
 #### `kv_put`
+
+- `cloudflare.kv.query.keys`
+- `cloudflare.kv.query.keys.count`
+- `cloudflare.kv.query.value_type`
+- `cloudflare.kv.query.expiration`
+- `cloudflare.kv.query.expiration_ttl`
+- `cloudflare.kv.query.metadata`
+- `cloudflare.kv.query.payload.size`
 
 #### `kv_delete`
 
+- `cloudflare.kv.query.keys`
+- `cloudflare.kv.query.keys.colunt`
+
 #### `kv_list`
+
+- `cloudflare.kv.query.prefix`
+- `cloudflare.kv.query.limit`
+- `cloudflare.kv.query.cursor`
+- `cloudflare.kv.response.size`
+- `cloudflare.kv.response.returned_rows`
+- `cloudflare.kv.response.list_complete`
+- `cloudflare.kv.response.cursor`
+- `cloudflare.kv.response.cache_status`
+- `cloudflare.kv.response.expiration`
 
 ---
 
@@ -119,23 +269,159 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `[common]`
 
+- `cloudflare.binding.type`
+- `cloudflare.binding.name`
+- `error.type`
+- `cloudflare.r2.bucket`
+- `cloudflare.r2.operation`
+- `cloudflare.r2.response.success`
+- `cloudflare.r2.error.message`
+- `cloudflare.r2.error.code`
+
 #### `r2_head`
+
+- `cloudflare.r2.request.key`
+- `cloudflare.r2.response.etag`
+- `cloudflare.r2.response.size`
+- `cloudflare.r2.response.uploaded`
+- `cloudflare.r2.response.checksum.value`
+- `cloudflare.r2.response.checksum.type`
+- `cloudflare.r2.response.storage_class`
+- `cloudflare.r2.response.ssec_key`
+- `cloudflare.r2.response.content_type`
+- `cloudflare.r2.response.content_encoding`
+- `cloudflare.r2.response.content_disposition`
+- `cloudflare.r2.response.content_language`
+- `cloudflare.r2.response.cache_control`
+- `cloudflare.r2.response.cache_expiry`
+- `cloudflare.r2.response.custom_metadata`
 
 #### `r2_get`
 
+- `cloudflare.r2.request.key`
+- `cloudflare.r2.request.range.offset`
+- `cloudflare.r2.request.range.length`
+- `cloudflare.r2.request.range.suffix`
+- `cloudflare.r2.request.range`
+- `cloudflare.r2.request.ssec_key`
+- `cloudflare.r2.request.only_if.etag_matches`
+- `cloudflare.r2.request.only_if.etag_does_not_match`
+- `cloudflare.r2.request.only_if.uploaded_before`
+- `cloudflare.r2.request.only_if.uploaded_after`
+- `cloudflare.r2.response.etag`
+- `cloudflare.r2.response.size`
+- `cloudflare.r2.response.uploaded`
+- `cloudflare.r2.response.checksum.value`
+- `cloudflare.r2.response.checksum.type`
+- `cloudflare.r2.response.storage_class`
+- `cloudflare.r2.response.ssec_key`
+- `cloudflare.r2.response.content_type`
+- `cloudflare.r2.response.content_encoding`
+- `cloudflare.r2.response.content_disposition`
+- `cloudflare.r2.response.content_language`
+- `cloudflare.r2.response.cache_control`
+- `cloudflare.r2.response.cache_expiry`
+- `cloudflare.r2.response.custom_metadata`
+
 #### `r2_put`
+
+- `cloudflare.r2.request.key`
+- `cloudflare.r2.request.size`
+- `cloudflare.r2.request.checksum.type`
+- `cloudflare.r2.request.checksum.value`
+- `cloudflare.r2.request.custom_metadata`
+- `cloudflare.r2.request.http_metadata.content_type`
+- `cloudflare.r2.request.http_metadata.content_encoding`
+- `cloudflare.r2.request.http_metadata.content_disposition`
+- `cloudflare.r2.request.http_metadata.content_language`
+- `cloudflare.r2.request.http_metadata.cache_control`
+- `cloudflare.r2.request.http_metadata.cache_expiry`
+- `cloudflare.r2.request.storage_class`
+- `cloudflare.r2.request.ssec_key`
+- `cloudflare.r2.request.only_if.etag_matches`
+- `cloudflare.r2.request.only_if.etag_does_not_match`
+- `cloudflare.r2.request.only_if.uploaded_before`
+- `cloudflare.r2.request.only_if.uploaded_after`
+- `cloudflare.r2.response.etag`
+- `cloudflare.r2.response.size`
+- `cloudflare.r2.response.uploaded`
+- `cloudflare.r2.response.checksum.value`
+- `cloudflare.r2.response.checksum.type`
+- `cloudflare.r2.response.storage_class`
+- `cloudflare.r2.response.ssec_key`
+- `cloudflare.r2.response.content_type`
+- `cloudflare.r2.response.content_encoding`
+- `cloudflare.r2.response.content_disposition`
+- `cloudflare.r2.response.content_language`
+- `cloudflare.r2.response.cache_control`
+- `cloudflare.r2.response.cache_expiry`
+- `cloudflare.r2.response.custom_metadata`
 
 #### `r2_list`
 
+- `cloudflare.r2.request.limit`
+- `cloudflare.r2.request.prefix`
+- `cloudflare.r2.request.cursor`
+- `cloudflare.r2.request.delimiter`
+- `cloudflare.r2.request.start_after`
+- `cloudflare.r2.request.include.http_metadata`
+- `cloudflare.r2.request.include.custom_metadata`
+- `cloudflare.r2.response.returned_objects`
+- `cloudflare.r2.response.delimited_prefixes`
+- `cloudflare.r2.response.truncated`
+- `cloudflare.r2.response.cursor`
+
 #### `r2_delete`
+
+- `cloudflare.r2.request.keys`
 
 #### `r2_createMultipartUpload`
 
+- `cloudflare.r2.request.key`
+- `cloudflare.r2.request.custom_metadata`
+- `cloudflare.r2.request.http_metadata.content_type`
+- `cloudflare.r2.request.http_metadata.content_encoding`
+- `cloudflare.r2.request.http_metadata.content_disposition`
+- `cloudflare.r2.request.http_metadata.content_language`
+- `cloudflare.r2.request.http_metadata.cache_control`
+- `cloudflare.r2.request.http_metadata.cache_expiry`
+- `cloudflare.r2.request.storage_class`
+- `cloudflare.r2.request.ssec_key`
+- `cloudflare.r2.response.upload_id`
+
 #### `r2_uploadPart`
+
+- `cloudflare.r2.request.key`
+- `cloudflare.r2.request.upload_id`
+- `cloudflare.r2.request.part_number`
+- `cloudflare.r2.request.ssec_key`
+- `cloudflare.r2.request.size`
+- `cloudflare.r2.response.etag`
 
 #### `r2_abortMultipartUpload`
 
+- `cloudflare.r2.request.key`
+- `cloudflare.r2.request.upload_id`
+
 #### `r2_completeMultipartUpload`
+
+- `cloudflare.r2.request.key`
+- `cloudflare.r2.request.upload_id`
+- `cloudflare.r2.request.uploaded_parts`
+- `cloudflare.r2.response.etag`
+- `cloudflare.r2.response.size`
+- `cloudflare.r2.response.uploaded`
+- `cloudflare.r2.response.checksum.value`
+- `cloudflare.r2.response.checksum.type`
+- `cloudflare.r2.response.storage_class`
+- `cloudflare.r2.response.ssec_key`
+- `cloudflare.r2.response.content_type`
+- `cloudflare.r2.response.content_encoding`
+- `cloudflare.r2.response.content_disposition`
+- `cloudflare.r2.response.content_language`
+- `cloudflare.r2.response.cache_control`
+- `cloudflare.r2.response.cache_expiry`
+- `cloudflare.r2.response.custom_metadata`
 
 ---
 
@@ -143,11 +429,23 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `wae_writeDataPoint`
 
+- `db.system.name`
+- `db.namespace`
+- `db.operation.name`
+- `cloudflare.binding_type`
+- `error.type`
+- `cloudflare.wae.query.index`
+- `cloudflare.wae.query.doubles`
+- `cloudflare.wae.query.blobs`
+
 ---
 
 ### Dispatch Namespace
 
 #### `wfp_get`
+
+- `cloudflare.binding.type`
+- `error.type`
 
 ---
 
@@ -155,23 +453,63 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `durable_object_subrequest`
 
+- `cloudflare.binding.type`
+- `cloudflare.binding.name`
+- `cloudflare.durable_object.id`
+- `cloudflare.durable_object.name`
+- `cloudflare.durable_object.class`
+- `cloudflare.durable_object.method`
+
 ---
 
 ### Durable Object Storage SQL API
 
 #### `[common]`
 
+- `cloudflare.durable_object.id`
+- `db.system.name`
+- `db.operation.name`
+
 #### `durable_object_storage_getDatabaseSize`
+
+- `cloudflare.durable_object.sql.query.statement`
+- `cloudflare.durable_object.sql.query.bindings`
+- `cloudflare.durable_object.sql.response.rows_read`
+- `cloudflare.durable_object.sql.response.rows_written`
+- `cloudflare.durable_object.sql.response.db_size`
 
 #### `durable_object_storage_ingest`
 
+- `db.system`
+- `db.operation.name`
+- `cloudflare.durable_object.response.rows_read`
+- `cloudflare.durable_object.response.rows_written`
+- `cloudflare.durable_object.response.statement_count`
+
 #### `durable_object_storage_kv_get`
+
+- `cloudflare.durable_object.kv.query.keys`
+- `cloudflare.durable_object.kv.query.keys.count`
 
 #### `durable_object_storage_kv_put`
 
+- `cloudflare.durable_object.kv.query.keys`
+- `cloudflare.durable_object.kv.query.keys.count`
+
 #### `durable_object_storage_kv_delete`
 
+- `cloudflare.durable_object.kv.query.keys`
+- `cloudflare.durable_object.kv.query.keys.count`
+- `cloudflare.durable_object.kv.response.deleted_count`
+
 #### `durable_object_storage_kv_list`
+
+- `cloudflare.durable_object.kv.query.start`
+- `cloudflare.durable_object.kv.query.startAfter`
+- `cloudflare.durable_object.kv.query.end`
+- `cloudflare.durable_object.kv.query.prefix`
+- `cloudflare.durable_object.kv.query.reverse`
+- `cloudflare.durable_object.kv.query.limit`
 
 ---
 
@@ -179,15 +517,50 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `[common]`
 
+- `db.operation.name`
+- `cloudflare.durable_object.id`
+- `db.system.name`
+
 #### `durable_object_storage_get`
+
+- `cloudflare.durable_object.kv.query.keys`
+- `cloudflare.durable_object.kv.query.keys.count`
+- `cloudflare.durable_object.kv.query.allow_concurrency`
+- `cloudflare.durable_object.kv.query.no_cache`
 
 #### `durable_object_storage_put`
 
+- `cloudflare.durable_object.kv.query.keys`
+- `cloudflare.durable_object.kv.query.keys.count`
+- `cloudflare.durable_object.kv.query.allow_concurrency`
+- `cloudflare.durable_object.kv.query.no_cache`
+- `cloudflare.durable_object.kv.query.allow_unconfirmed`
+
 #### `durable_object_storage_delete`
+
+- `cloudflare.durable_object.kv.query.keys`
+- `cloudflare.durable_object.kv.query.keys.count`
+- `cloudflare.durable_object.kv.query.allow_concurrency`
+- `cloudflare.durable_object.kv.query.no_cache`
+- `cloudflare.durable_object.kv.query.allow_unconfirmed`
+- `cloudflare.durable_object.kv.response.deleted_count`
 
 #### `durable_object_storage_list`
 
+- `cloudflare.durable_object.kv.query.start`
+- `cloudflare.durable_object.kv.query.startAfter`
+- `cloudflare.durable_object.kv.query.end`
+- `cloudflare.durable_object.kv.query.prefix`
+- `cloudflare.durable_object.kv.query.reverse`
+- `cloudflare.durable_object.kv.query.limit`
+- `cloudflare.durable_object.kv.query.allow_concurrency`
+- `cloudflare.durable_object.kv.query.no_cache`
+
 #### `durable_object_storage_deleteAll`
+
+- `cloudflare.durable_object.kv.query.allow_concurrency`
+- `cloudflare.durable_object.kv.query.no_cache`
+- `cloudflare.durable_object.kv.query.allow_unconfirmed`
 
 ---
 
@@ -205,15 +578,34 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 #### `reply_email`
 
+- `cloudflare.binding_type`
+- `error.type`
+- `cloudflare.send_email.to`
+- `cloudflare.send_email.from`
+
 #### `forward_email`
 
+- `cloudflare.send_email.message.bytes`
+- `cloudflare.binding_type`
+- `error.type`
+- `cloudflare.send_email.to`
+- `cloudflare.send_email.from`
+
 #### `send_email`
+
+- `cloudflare.send_email.message.bytes`
+- `cloudflare.binding_type`
+- `error.type`
+- `cloudflare.send_email.to`
+- `cloudflare.send_email.from`
 
 ---
 
 ### Queues
 
 #### `queue_send`
+
+- `cloudflare.send_email.message.bytes`
 
 #### `queue_sendBatch`
 
