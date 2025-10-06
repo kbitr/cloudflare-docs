@@ -9,41 +9,9 @@ import { Render } from "~/components";
 
 Cloudflare has automatically instrumented fetch calls and requests to Cloudflare resources (e.g. Workers KV, D1 Databases, Durable Objects) bound to your Workers application, without requiring you to install and configure an OpenTelemetry SDK. 
 
-### General
+### [Runtime API](/workers/runtime-apis/)
 
-#### `on all spans`
-
-- `cloud.provider`
-- `cloud.platform`
-- `cloud.region`
-- `faas.name`
-- `faas.invocation_id`
-- `faas.version`
-- `faas.max_memory`
-- `faas.invoked_region`
-- `service.name`
-- `cloudflare.colo`
-- `cloudflare.script_name`
-- `cloudflare.script_tags`
-- `cloudflare.script_version.tag`
-- `cloudflare.script_version.message`
-- `cloudflare.script_version.id`
-- `telemetry.sdk.language`
-- `telemetry.sdk.name`
-
-#### `on all root spans`
-
-- `faas.trigger`
-- `cloudflare.dispatch_namespace`
-- `cloudflare.entrypoint`
-- `cloudflare.execution_model`
-- `cloudflare.handler_type`
-
----
-
-### Runtime API
-
-#### `fetch`
+#### [`fetch`](/workers/runtime-apis/handlers/fetch/)
 
 - `network.protocol.name`
 - `network.protocol.version`
@@ -63,20 +31,20 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `http.response.status_code`
 - `http.response.body.size`
 
-#### `cache_put`
+#### [`cache_put`](/workers/runtime-apis/cache/#put)
 
 - `cache_control.expiration`
 - `cache_control.revalidation`
 
-#### `cache_match`
+#### [`cache_match`](/workers/runtime-apis/cache/#match)
 
-#### `cache_delete`
+#### [`cache_delete`](/workers/runtime-apis/cache/#delete)
 
 ---
 
-### Handlers
+### [Handlers](/workers/runtime-apis/handlers/)
 
-#### `[common]`
+#### Attributes availabe on all handlers 
 
 - `cloudflare.outcome`
 - `cloudflare.cpu_time`
@@ -112,39 +80,39 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `url.path`
 - `network.protocol.name`
 
-#### `Scheduled Handler`
+#### [`Scheduled Handler`](/workers/runtime-apis/handlers/scheduled/)
 
 - `faas.cron`
 - `cloudflare.scheduled_time`
 
-#### `QueueHandler`
+#### [`QueueHandler`](/workers/runtime-apis/handlers/queue/)
 
 - `cloudflare.queue.name`
 - `cloudflare.queue.batch_size`
 
-#### `JSRPC Handler`
+#### [`RPC Handler`](/workers/runtime-apis/rpc/)
 
-- `cloudflare.jsrpc.method`
+- [`cloudflare.jsrpc.method`](/workers/runtime-apis/rpc/)
 
-#### `EmailHandler`
+#### [`EmailHandler`](/email-routing/email-workers/runtime-api/)
 
 - `cloudflare.email.from`
 - `cloudflare.email.to`
 - `cloudflare.email.size`
 
-#### `Trace Handler`
+#### [`Trace Handler`](/workers/runtime-apis/handlers/tail/)
 
 - `cloudflare.trace.count`
 
-#### `AlarmHandler`
+#### [`AlarmHandler`](/durable-objects/api/alarms/#alarm)
 
 - `cloudflare.scheduled_time`
 
 ---
 
-### D1
+### [D1](/d1/)
 
-#### `[common]`
+#### Attributes available on all D1 spans 
 
 - `db.system.name`
 - `db.operation.name`
@@ -162,51 +130,51 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.d1.response.sql_duration_ms`
 - `cloudflare.d1.response.total_attempts`
 
-#### `d1_batch`
+#### [`d1_batch`](/d1/worker-api/d1-database/#batch)
 
 - `db.operation.batch.size`
 - `cloudflare.d1.query.bookmark`
 - `cloudflare.d1.response.bookmark`
 
-#### `d1_exec`
+#### [`d1_exec`](/d1/worker-api/d1-database/#exec)
 
 - `N/A`
 
-#### `d1_first`
+#### [`d1_first`](/d1/worker-api/prepared-statements/#first)
 
 - `cloudflare.d1.query.bookmark`
 - `cloudflare.d1.response.bookmark`
 
-#### `d1_run`
+#### [`d1_run`](/d1/worker-api/prepared-statements/#run)
 
 - `cloudflare.d1.query.bookmark`
 - `cloudflare.d1.response.bookmark`
 
-#### `d1_all`
+#### [`d1_all`](/d1/worker-api/prepared-statements/#run)
 
 - `cloudflare.d1.query.bookmark`
 - `cloudflare.d1.response.bookmark`
 
-#### `d1_raw`
+#### [`d1_raw`](/d1/worker-api/prepared-statements/#raw)
 
 - `cloudflare.d1.query.bookmark`
 - `cloudflare.d1.response.bookmark`
 
-#### `browser_rendering_fetch`
+#### [`browser_rendering_fetch`](/browser-rendering/)
 
 ---
 
-### Workers AI
+### [Workers AI](/workers-ai/)
 
-#### `ai_run`
+#### [`ai_run`](/workers-ai/configuration/bindings/#async-envairun)
 
-#### `ai_toMarkdown`
+#### [`ai_toMarkdown`](/workers-ai/features/markdown-conversion/#async-envaitomarkdown)
 
 ---
 
-### KV
+### [Workers KV](/kv/)
 
-#### `[common]`
+#### Attributes available on all KV spans 
 
 - `db.system.name`
 - `db.operation.name`
@@ -214,7 +182,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.binding.type`
 - `error.type`
 
-#### `kv_get`
+#### [`kv_get`](/kv/api/read-key-value-pairs/#get-method)
 
 - `cloudflare.kv.query.keys`
 - `cloudflare.kv.query.keys.count`
@@ -225,7 +193,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.kv.response.metadata`
 - `cloudflare.kv.response.cache_status`
 
-#### `kv_getWithMetadata`
+#### [`kv_getWithMetadata`](/kv/api/read-key-value-pairs/#getwithmetadata-method)
 
 - `cloudflare.kv.query.keys`
 - `cloudflare.kv.query.keys.count`
@@ -236,7 +204,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.kv.response.metadata`
 - `cloudflare.kv.response.cache_status`
 
-#### `kv_put`
+#### [`kv_put`](/kv/api/write-key-value-pairs/#put-method)
 
 - `cloudflare.kv.query.keys`
 - `cloudflare.kv.query.keys.count`
@@ -246,12 +214,12 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.kv.query.metadata`
 - `cloudflare.kv.query.payload.size`
 
-#### `kv_delete`
+#### [`kv_delete`](/kv/api/delete-key-value-pairs/#delete-method)
 
 - `cloudflare.kv.query.keys`
 - `cloudflare.kv.query.keys.colunt`
 
-#### `kv_list`
+#### [`kv_list`](/kv/api/list-keys/#list-method)
 
 - `cloudflare.kv.query.prefix`
 - `cloudflare.kv.query.limit`
@@ -265,9 +233,9 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### R2
+### [R2](/r2/)
 
-#### `[common]`
+#### Attributes available on all R2 spans
 
 - `cloudflare.binding.type`
 - `cloudflare.binding.name`
@@ -278,7 +246,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.r2.error.message`
 - `cloudflare.r2.error.code`
 
-#### `r2_head`
+#### [`r2_head`](/r2/api/workers/workers-api-reference/#bucket-method-definitions)
 
 - `cloudflare.r2.request.key`
 - `cloudflare.r2.response.etag`
@@ -296,7 +264,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.r2.response.cache_expiry`
 - `cloudflare.r2.response.custom_metadata`
 
-#### `r2_get`
+#### [`r2_get`](/r2/api/workers/workers-api-reference/#bucket-method-definitions)
 
 - `cloudflare.r2.request.key`
 - `cloudflare.r2.request.range.offset`
@@ -323,7 +291,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.r2.response.cache_expiry`
 - `cloudflare.r2.response.custom_metadata`
 
-#### `r2_put`
+#### [`r2_put`](/r2/api/workers/workers-api-reference/#bucket-method-definitions)
 
 - `cloudflare.r2.request.key`
 - `cloudflare.r2.request.size`
@@ -357,7 +325,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.r2.response.cache_expiry`
 - `cloudflare.r2.response.custom_metadata`
 
-#### `r2_list`
+#### [`r2_list`](/r2/api/workers/workers-api-reference/#bucket-method-definitions)
 
 - `cloudflare.r2.request.limit`
 - `cloudflare.r2.request.prefix`
@@ -371,11 +339,11 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.r2.response.truncated`
 - `cloudflare.r2.response.cursor`
 
-#### `r2_delete`
+#### [`r2_delete`](/r2/api/workers/workers-api-reference/#bucket-method-definitions)
 
 - `cloudflare.r2.request.keys`
 
-#### `r2_createMultipartUpload`
+#### [`r2_createMultipartUpload`](/r2/api/workers/workers-multipart-usage/)
 
 - `cloudflare.r2.request.key`
 - `cloudflare.r2.request.custom_metadata`
@@ -389,7 +357,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.r2.request.ssec_key`
 - `cloudflare.r2.response.upload_id`
 
-#### `r2_uploadPart`
+#### [`r2_uploadPart`](/r2/api/workers/workers-multipart-usage/)
 
 - `cloudflare.r2.request.key`
 - `cloudflare.r2.request.upload_id`
@@ -398,12 +366,12 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.r2.request.size`
 - `cloudflare.r2.response.etag`
 
-#### `r2_abortMultipartUpload`
+#### [`r2_abortMultipartUpload`](/r2/api/workers/workers-multipart-usage/)
 
 - `cloudflare.r2.request.key`
 - `cloudflare.r2.request.upload_id`
 
-#### `r2_completeMultipartUpload`
+#### [`r2_completeMultipartUpload`](/r2/api/workers/workers-multipart-usage/)
 
 - `cloudflare.r2.request.key`
 - `cloudflare.r2.request.upload_id`
@@ -425,9 +393,9 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### Workers Analytics Engine
+### [Workers Analytics Engine](/analytics/analytics-engine/)
 
-#### `wae_writeDataPoint`
+#### [`wae_writeDataPoint`](/analytics/analytics-engine/get-started/#2-write-data-points-from-your-worker)
 
 - `db.system.name`
 - `db.namespace`
@@ -440,18 +408,19 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### Dispatch Namespace
+### [Dispatch Namespace](/workers/runtime-apis/bindings/dispatch-namespace/)
 
-#### `wfp_get`
+#### [`wfp_get`](/cloudflare-for-platforms/workers-for-platforms/get-started/dynamic-dispatch/#configure-the-dispatch-namespace-binding)
 
 - `cloudflare.binding.type`
 - `error.type`
 
 ---
 
-### Durable Object API
+### [Durable Object API](/durable-objects/)
 
 #### `durable_object_subrequest`
+RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod()`)
 
 - `cloudflare.binding.type`
 - `cloudflare.binding.name`
@@ -462,15 +431,15 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### Durable Object Storage SQL API
+### [Durable Object Storage SQL API](/durable-objects/api/storage-api/)
 
-#### `[common]`
+#### Attributes availabe on all Durable Object Storage SQL API
 
 - `cloudflare.durable_object.id`
 - `db.system.name`
 - `db.operation.name`
 
-#### `durable_object_storage_getDatabaseSize`
+#### [`durable_object_storage_getDatabaseSize`](/durable-objects/api/storage-api/#sql-api)
 
 - `cloudflare.durable_object.sql.query.statement`
 - `cloudflare.durable_object.sql.query.bindings`
@@ -478,7 +447,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.durable_object.sql.response.rows_written`
 - `cloudflare.durable_object.sql.response.db_size`
 
-#### `durable_object_storage_ingest`
+#### [`durable_object_storage_ingest`](/durable-objects/api/storage-api/#sql-api)
 
 - `db.system`
 - `db.operation.name`
@@ -486,23 +455,23 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.durable_object.response.rows_written`
 - `cloudflare.durable_object.response.statement_count`
 
-#### `durable_object_storage_kv_get`
+#### [`durable_object_storage_kv_get`](/durable-objects/api/storage-api/#get)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 
-#### `durable_object_storage_kv_put`
+#### [`durable_object_storage_kv_put`](/durable-objects/api/storage-api/#put)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 
-#### `durable_object_storage_kv_delete`
+#### [`durable_object_storage_kv_delete`](/durable-objects/api/storage-api/#delete)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 - `cloudflare.durable_object.kv.response.deleted_count`
 
-#### `durable_object_storage_kv_list`
+#### [`durable_object_storage_kv_list`](/durable-objects/api/storage-api/#list)
 
 - `cloudflare.durable_object.kv.query.start`
 - `cloudflare.durable_object.kv.query.startAfter`
@@ -513,22 +482,22 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### Durable Object Storage KV API
+### [Durable Object Storage KV API](/durable-objects/api/storage-api/)
 
-#### `[common]`
+#### Attributes availabe on all Durable Object Storage KV API
 
 - `db.operation.name`
 - `cloudflare.durable_object.id`
 - `db.system.name`
 
-#### `durable_object_storage_get`
+#### [`durable_object_storage_get`](/durable-objects/api/storage-api/#get)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 - `cloudflare.durable_object.kv.query.allow_concurrency`
 - `cloudflare.durable_object.kv.query.no_cache`
 
-#### `durable_object_storage_put`
+#### [`durable_object_storage_put`](/durable-objects/api/storage-api/#put)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
@@ -536,7 +505,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.durable_object.kv.query.no_cache`
 - `cloudflare.durable_object.kv.query.allow_unconfirmed`
 
-#### `durable_object_storage_delete`
+#### [`durable_object_storage_delete`](/durable-objects/api/storage-api/#delete)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
@@ -545,7 +514,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.durable_object.kv.query.allow_unconfirmed`
 - `cloudflare.durable_object.kv.response.deleted_count`
 
-#### `durable_object_storage_list`
+#### [`durable_object_storage_list`](/durable-objects/api/storage-api/#list)
 
 - `cloudflare.durable_object.kv.query.start`
 - `cloudflare.durable_object.kv.query.startAfter`
@@ -556,7 +525,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.durable_object.kv.query.allow_concurrency`
 - `cloudflare.durable_object.kv.query.no_cache`
 
-#### `durable_object_storage_deleteAll`
+#### [`durable_object_storage_deleteAll`](/durable-objects/api/storage-api/#deleteall)
 
 - `cloudflare.durable_object.kv.query.allow_concurrency`
 - `cloudflare.durable_object.kv.query.no_cache`
@@ -564,26 +533,26 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### Durable Object Storage Alarms API
+### [Durable Object Storage Alarms API](/durable-objects/api/alarms/)
 
-#### `durable_object_alarms_getAlarm`
+#### [`durable_object_alarms_getAlarm`](/durable-objects/api/alarms/#getalarm)
 
-#### `durable_object_alarms_setAlarm`
+#### [`durable_object_alarms_setAlarm`](/durable-objects/api/alarms/#setalarm)
 
-#### `durable_object_alarms_deleteAlarm`
+#### [`durable_object_alarms_deleteAlarm`](/durable-objects/api/alarms/#deletealarm)
 
 ---
 
-### Email
+### [Email](/email-routing/)
 
-#### `reply_email`
+#### [`reply_email`](/email-routing/email-workers/reply-email-workers/)
 
 - `cloudflare.binding_type`
 - `error.type`
 - `cloudflare.send_email.to`
 - `cloudflare.send_email.from`
 
-#### `forward_email`
+#### [`forward_email`](/email-routing/email-workers/runtime-api/)
 
 - `cloudflare.send_email.message.bytes`
 - `cloudflare.binding_type`
@@ -591,7 +560,7 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 - `cloudflare.send_email.to`
 - `cloudflare.send_email.from`
 
-#### `send_email`
+#### [`send_email`](/email-routing/email-workers/send-email-workers/)
 
 - `cloudflare.send_email.message.bytes`
 - `cloudflare.binding_type`
@@ -601,40 +570,61 @@ Cloudflare has automatically instrumented fetch calls and requests to Cloudflare
 
 ---
 
-### Queues
+### [Queues](/queues/)
 
-#### `queue_send`
+#### [`queue_send`](/queues/configuration/javascript-apis/#queue)
 
 - `cloudflare.send_email.message.bytes`
 
-#### `queue_sendBatch`
+#### [`queue_sendBatch`](/queues/configuration/javascript-apis/#queue)
 
-#### `ratelimit_run`
 
----
-
-### Images
-
-#### `ImageTransformerImpl_output`
-
-#### `ImageBindingImpl_info`
+### [`Rate limiting`](/workers/runtime-apis/bindings/rate-limit/)
+#### [`ratelimit_run`](/workers/runtime-apis/bindings/rate-limit/#best-practices)
 
 ---
 
-### Vectorize
+### [Vectorize](/vectorize/)
 
-#### `vectorize_describe`
+#### [`vectorize_describe`](/vectorize/reference/client-api/#retrieve-index-details)
 
-#### `vectorize_query`
+#### [`vectorize_query`](/vectorize/reference/client-api/#query-vectors)
 
-#### `vectorize_queryByld`
+#### [`vectorize_queryByld`](/vectorize/reference/client-api/#query-vectors-by-id)
 
-#### `vectorize_insert`
+#### [`vectorize_insert`](/vectorize/reference/client-api/#insert-vectors)
 
-#### `vectorize_upsert`
+#### [`vectorize_upsert`](/vectorize/reference/client-api/#upsert-vectors)
 
-#### `vectorize_getBylds`
+#### [`vectorize_getBylds`](/vectorize/reference/client-api/#get-vectors-by-id)
 
-#### `vectorize_deleteBylds`
+#### [`vectorize_deleteBylds`](/vectorize/reference/client-api/#delete-vectors-by-id)
 
 ---
+
+### Attributes available on all spans 
+- `cloud.provider`
+- `cloud.platform`
+- `cloud.region`
+- `faas.name`
+- `faas.invocation_id`
+- `faas.version`
+- `faas.max_memory`
+- `faas.invoked_region`
+- `service.name`
+- `cloudflare.colo`
+- `cloudflare.script_name`
+- `cloudflare.script_tags`
+- `cloudflare.script_version.tag`
+- `cloudflare.script_version.message`
+- `cloudflare.script_version.id`
+- `telemetry.sdk.language`
+- `telemetry.sdk.name`
+
+### Attributes availabe on all root spans
+
+- `faas.trigger`
+- `cloudflare.dispatch_namespace`
+- `cloudflare.entrypoint`
+- `cloudflare.execution_model`
+- `cloudflare.handler_type`
