@@ -5,7 +5,7 @@ sidebar:
   order: 3
 
 ---
-import { Tabs, TabItem } from "~/components";
+import { WranglerConfig } from "~/components";
 
 ### What is Workers tracing? 
 
@@ -31,33 +31,21 @@ While our work for automatic instrumentation is ongoing, we've [documented](/wor
 
 To view traces in the Workers dashboard, set the following in your Wrangler configuration file: 
 
-<Tabs>
-<TabItem label="wrangler.jsonc">
+<WranglerConfig>
 
-```jsonc title="wrangler.jsonc"
+```json
 {
   "observability": {
     "traces": {
       "enabled": true,
       // optional sampling rate
-      "head_sampling_rate": .05
+      "head_sampling_rate": 0.05
     }
   }
 }
 ```
 
-</TabItem>
-<TabItem label="wrangler.toml">
-
-```toml title="wrangler.toml"
-[observability.traces]
-enabled = true
-# optional sampling rate
-head_sampling_rate = 0.05
-```
-
-</TabItem>
-</Tabs>
+</WranglerConfig>
 
 Or if you have already set `observability.enabled = true` in your wrangler configuration file, tracing **and** logs will be automatically enabled. 
 
@@ -72,10 +60,9 @@ With head-based sampling, you can trace a percentage of incoming requests in you
 
 The valid sampling range is from 0 to 1, where 0 indicates zero out of one hundred invocations will be traced, and 1 indicates every requests will be traced. If `head_sampling_rate` is unspecified, it defaults to tracing 100% of requests. 
 
-<Tabs>
-<TabItem label="wrangler.jsonc">
+<WranglerConfig>
 
-```jsonc title="wrangler.jsonc"
+```json
 {
   "observability": {
     "traces": {
@@ -92,23 +79,7 @@ The valid sampling range is from 0 to 1, where 0 indicates zero out of one hundr
 }
 ```
 
-</TabItem>
-<TabItem label="wrangler.toml">
-
-```toml title="wrangler.toml"
-[observability.traces]
-enabled = true
-# set tracing sampling rate to 5%
-head_sampling_rate = 0.05
-
-[observability.logs]
-enabled = true
-# set logging sampling rate to 60%
-head_sampling_rate = 0.6
-```
-
-</TabItem>
-</Tabs>
+</WranglerConfig>
 
 If you have `head_sampling_rate` configured specifically for logs, you can also create a separate rate for traces. 
 

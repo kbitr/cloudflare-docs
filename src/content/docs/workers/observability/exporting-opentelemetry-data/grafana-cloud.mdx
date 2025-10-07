@@ -4,8 +4,7 @@ title: Export to Grafana Cloud
 sidebar:
   order: 2
 ---
-
-import { Tabs, TabItem } from "~/components";
+import {WranglerConfig} from "~/components";
 
 Grafana Cloud is a fully managed observability platform that provides visualization, alerting, and analytics for your telemetry data. By exporting your Cloudflare Workers telemetry to Grafana Cloud, you can:
 - Visualize distributed traces in **Grafana Tempo** to understand request flows and performance bottlenecks
@@ -45,10 +44,9 @@ Before you begin, ensure you have:
 
 With your destination created in the Cloudflare dashboard, update your Worker's configuration to enable telemetry export. 
 
-<Tabs>
-<TabItem label="wrangler.jsonc">
+<WranglerConfig>
 
-```jsonc title="wrangler.jsonc"
+```json
 {
   "observability": {
     "traces": {
@@ -65,23 +63,7 @@ With your destination created in the Cloudflare dashboard, update your Worker's 
 }
 ```
 
-</TabItem>
-<TabItem label="wrangler.toml">
-
-```toml title="wrangler.toml"
-[observability.traces]
-enabled = true
-# Must match the destination name in the dashboard
-destinations = ["grafana-traces"]
-
-[observability.logs]
-enabled = true
-# Must match the destination name in the dashboard
-destinations = ["grafana-logs"]
-```
-
-</TabItem>
-</Tabs>
+</WranglerConfig>
 
 After updating your configuration, deploy your Worker for the changes to take effect. 
 
