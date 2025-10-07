@@ -7,7 +7,7 @@ sidebar:
     hideIndex: false
 ---
 
-Workers tracing is currently in open beta. This page documents current limitations and any upcoming features on our roadmap. To provide more feedback and feature requests please [reach out to us](link).
+Workers tracing is currently in open beta. This page documents current limitations and any upcoming features on our roadmap. To provide more feedback and feature requests please reach out to us.
 
 ### Trace context propagation not yet supported
 One of the key aspects of distributed tracing is ensuring trace context flows across service boundaries and automatically linking spans together to create complete, end-to-end visibility. When fully implemented, our automatic trace context propagation will follow [W3C standards](https://www.w3.org/TR/trace-context/) to ensure compatibility across your existing tools and services. 
