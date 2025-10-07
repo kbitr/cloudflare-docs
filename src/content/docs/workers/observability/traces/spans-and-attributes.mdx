@@ -410,7 +410,7 @@ Cloudflare Workers provides automatic tracing instrumentation **out of the box**
 
 ---
 
-### [Dispatch Namespace](/workers/runtime-apis/bindings/dispatch-namespace/)
+### Dispatch Namespace
 
 #### [`wfp_get`](/cloudflare-for-platforms/workers-for-platforms/get-started/dynamic-dispatch/#configure-the-dispatch-namespace-binding)
 - `cloudflare.dispatch_namespace`
@@ -435,6 +435,7 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 ---
 
 ### [Durable Object Storage SQL API](/durable-objects/api/storage-api/)
+The SQL API allow you to modify the SQLite database embedded within a Durable Object.
 
 #### Attributes availabe on all Durable Object Storage SQL API
 
@@ -442,7 +443,9 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 - `db.system.name`
 - `db.operation.name`
 
-#### [`durable_object_storage_getDatabaseSize`](/durable-objects/api/storage-api/#sql-api)
+#### [`durable_object_storage_exec`](/durable-objects/api/sqlite-storage-api/#exec)
+
+#### [`durable_object_storage_getDatabaseSize`](/durable-objects/api/sqlite-storage-api/#databasesize)
 
 - `cloudflare.durable_object.sql.query.statement`
 - `cloudflare.durable_object.sql.query.bindings`
@@ -450,7 +453,7 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 - `cloudflare.durable_object.sql.response.rows_written`
 - `cloudflare.durable_object.sql.response.db_size`
 
-#### [`durable_object_storage_ingest`](/durable-objects/api/storage-api/#sql-api)
+#### `durable_object_storage_ingest`
 
 - `db.system`
 - `db.operation.name`
@@ -458,23 +461,23 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 - `cloudflare.durable_object.response.rows_written`
 - `cloudflare.durable_object.response.statement_count`
 
-#### [`durable_object_storage_kv_get`](/durable-objects/api/storage-api/#get)
+#### [`durable_object_storage_kv_get`](/durable-objects/api/sqlite-storage-api/#get)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 
-#### [`durable_object_storage_kv_put`](/durable-objects/api/storage-api/#put)
+#### [`durable_object_storage_kv_put`](/durable-objects/api/sqlite-storage-api/#put)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 
-#### [`durable_object_storage_kv_delete`](/durable-objects/api/storage-api/#delete)
+#### [`durable_object_storage_kv_delete`](/durable-objects/api/sqlite-storage-api/#delete)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 - `cloudflare.durable_object.kv.response.deleted_count`
 
-#### [`durable_object_storage_kv_list`](/durable-objects/api/storage-api/#list)
+#### [`durable_object_storage_kv_list`](/durable-objects/api/sqlite-storage-api/#list)
 
 - `cloudflare.durable_object.kv.query.start`
 - `cloudflare.durable_object.kv.query.startAfter`
@@ -486,6 +489,7 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 ---
 
 ### [Durable Object Storage KV API](/durable-objects/api/storage-api/)
+The KV-backed API allows you to modify embedded storage within a Durable Object.
 
 #### Attributes availabe on all Durable Object Storage KV API
 
@@ -493,14 +497,14 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 - `cloudflare.durable_object.id`
 - `db.system.name`
 
-#### [`durable_object_storage_get`](/durable-objects/api/storage-api/#get)
+#### [`durable_object_storage_get`](/durable-objects/api/legacy-kv-storage-api/#do-kv-async-get)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
 - `cloudflare.durable_object.kv.query.allow_concurrency`
 - `cloudflare.durable_object.kv.query.no_cache`
 
-#### [`durable_object_storage_put`](/durable-objects/api/storage-api/#put)
+#### [`durable_object_storage_put`](/durable-objects/api/legacy-kv-storage-api/#do-kv-async-put)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
@@ -508,7 +512,7 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 - `cloudflare.durable_object.kv.query.no_cache`
 - `cloudflare.durable_object.kv.query.allow_unconfirmed`
 
-#### [`durable_object_storage_delete`](/durable-objects/api/storage-api/#delete)
+#### [`durable_object_storage_delete`](/durable-objects/api/legacy-kv-storage-api/#do-kv-async-delete)
 
 - `cloudflare.durable_object.kv.query.keys`
 - `cloudflare.durable_object.kv.query.keys.count`
@@ -517,7 +521,7 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 - `cloudflare.durable_object.kv.query.allow_unconfirmed`
 - `cloudflare.durable_object.kv.response.deleted_count`
 
-#### [`durable_object_storage_list`](/durable-objects/api/storage-api/#list)
+#### [`durable_object_storage_list`](/durable-objects/api/legacy-kv-storage-api/#do-kv-async-list)
 
 - `cloudflare.durable_object.kv.query.start`
 - `cloudflare.durable_object.kv.query.startAfter`
@@ -528,7 +532,7 @@ RPC calls to your Durable Object (e.g. `env.MY_DO.fetch()`, `env.MY_DO.myMethod(
 - `cloudflare.durable_object.kv.query.allow_concurrency`
 - `cloudflare.durable_object.kv.query.no_cache`
 
-#### [`durable_object_storage_deleteAll`](/durable-objects/api/storage-api/#deleteall)
+#### [`durable_object_storage_deleteAll`](/durable-objects/api/legacy-kv-storage-api/#deleteall)
 
 - `cloudflare.durable_object.kv.query.allow_concurrency`
 - `cloudflare.durable_object.kv.query.no_cache`
