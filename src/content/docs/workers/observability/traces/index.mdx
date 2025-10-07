@@ -55,10 +55,12 @@ If your observability provider has an available OpenTelemetry endpoint, you can 
 
  Learn more about exporting OpenTelemetry data from Workers to your provider of choice [here](workers/observability/exporting-opentelemetry-data/index.mdx). 
 
-### Head-based sampling
+### Sampling 
+
+#### Head-based sampling
 With head-based sampling, you can trace a percentage of incoming requests in your Cloudflare Worker to manage volume and costs, while still providing meaningful insights into your application.  
 
-The valid sampling range is from 0 to 1, where 0 indicates zero out of one hundred invocations will be traced, and 1 indicates every requests will be traced. If `head_sampling_rate` is unspecified, it defaults to tracing 100% of requests. 
+The valid sampling range is from 0 to 1, where 0 indicates zero out of one hundred invocations will be traced, and 1 indicates every requests will be traced. 
 
 <WranglerConfig>
 
@@ -81,22 +83,22 @@ The valid sampling range is from 0 to 1, where 0 indicates zero out of one hundr
 
 </WranglerConfig>
 
-If you have `head_sampling_rate` configured specifically for logs, you can also create a separate rate for traces. 
+If you have `head_sampling_rate` configured for logs, you can also create a separate rate for traces. 
+
+#### Default sampling 
+TODO: update this --> If `head_sampling_rate` is unspecified, it defaults to tracing 100% of requests. 
 
 ### Limits & Pricing 
 
 Workers tracing is currently **free** during the early beta period. This includes all tracing functionality such as collecting traces, storing them, and viewing them in the Cloudflare dashboard.
 
-Starting on 1/15/2026, tracing will be billed as part of your usage on the Workers Free Paid and Enterprise plans. Each span in a trace represents one observability event, sharing the same monthly quota and pricing as [Workers logs](https://developers.cloudflare.com/workers/platform/pricing/#workers-logs):
+Starting on January 15, 2026, tracing will be billed as part of your usage on the Workers Free Paid and Enterprise plans. Each span in a trace represents one observability event, sharing the same monthly quota and pricing as [Workers logs](/workers/platform/pricing/#workers-logs):
 
 |                  | Events (trace spans or log events)                                        | Retention |
 | ---------------- | ------------------------------------------------------------------------- | --------- |
 | **Workers Free** | 200,000 per day                                                          | 3 Days    |
 | **Workers Paid** | 10 million included per month +$0.60 per additional million events | 7 Days   |
 
-On xx/xx/xxxx, you will start being billed for your tracing usage. 
-
-Workers tracing is currently in open beta. This page documents current limitations and any features on our roadmap. To provide more feedback and feature requests please [reach out to us](link).
 
 
 

@@ -77,11 +77,12 @@ After creating a destination, you can monitor its health and delivery status in 
 
 | Status | Description | Troubleshooting |
 |--------|-------------|-----------------|
-| **Last: X minutes ago** | Data was recently delivered successfully. Destination is healthy and receiving telemetry data. | No action needed - destination is working correctly. |
-| **Never run** | No data has been successfully delivered to this destination. | • Verify OTLP endpoint URL is correct<br />• Check authentication headers are valid<br />• Ensure your Worker has been invoked since destination was configured<br />• Review sampling rates (low rates generate less data)<br />|
+| **Last: n minutes ago** | Data was recently delivered successfully. |  |
+| **Never run** | No data has been delivered to this destination. | •Check if your Worker is receving traffic <br /> • Review sampling rates (low rates generate less data)<br /> |
+| **Error** | An error occurred while attempting to deliver data to this destination. |• Verify OTLP endpoint URL is correct<br />• Check authentication headers are valid<br />|
 
 ## Limits and pricing
-Exporing OTel data is currently **free** to those currently on a Workers Paid subscription or higher during the early beta period. However, starting on **`January 15, 2026`**, tracing will be billed as part of your usage on the Workers Paid plan or contract. 
+Exporting OTel data is currently **free** to those currently on a Workers Paid subscription or higher during the early beta period. However, starting on **`January 15, 2026`**, tracing will be billed as part of your usage on the Workers Paid plan or contract. 
 
 This includes the following limits and pricing:
 
