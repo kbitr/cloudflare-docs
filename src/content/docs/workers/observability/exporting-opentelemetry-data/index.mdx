@@ -18,9 +18,27 @@ You can export the following types of telemetry data:
 
 **Note**: exporting Worker metrics and custom metrics is not yet supported. 
 
-### Supported OpenTelemtry destinations
-* [Honeycomb](/workers/observability/exporting-opentelemetry-data/honeycomb/)
-* [Grafana Cloud](/workers/observability/exporting-opentelemetry-data/grafana-cloud/)
+### Available OpenTelemetry destinations
+
+Below are common OTLP endpoint formats for popular observability providers. Refer to your provider's documentation for specific details and authentication requirements.
+
+| Provider | Traces Endpoint | Logs Endpoint |
+|----------|----------------|---------------|
+| [**Honeycomb**](/workers/observability/exporting-opentelemetry-data/honeycomb/) | `https://api.honeycomb.io/v1/traces` | `https://api.honeycomb.io/v1/logs` |
+| [**Grafana Cloud**](/workers/observability/exporting-opentelemetry-data/grafana-cloud/) | `https://otlp-gateway-{region}.grafana.net/otlp/v1/traces`[^1] | `https://otlp-gateway-{region}.grafana.net/otlp/v1/logs`[^1] |
+| **Axiom** | `https://api.axiom.co/v1/traces` | `https://api.axiom.co/v1/logs` |
+| **Datadog** | Not yet available. Pending release from Datadog[^2] | Not yet available. Pending release from Datadog[^2] |
+| **Sentry** | Not yet available. Pending release from Sentry[^3] | Not yet available. Pending release from Sentry[^3] |
+
+[^1]: Replace `{region}` with your Grafana Cloud stack region (e.g., `prod-us-east-0`)
+
+[^2]: Datadog's OTLP endpoints are currently being rolled out and may not be available for all accounts. Contact Datadog support to enable OTLP ingestion for your account.
+
+[^3]: Sentry's OTLP endpoints are currently being rolled out and may not be available for all accounts. Contact Sentry support to enable OTLP ingestion for your account.
+
+:::note[Authentication]
+Most providers require authentication headers. Refer to your provider's documentation for specific authentication requirements.
+:::
 
 ## Setting up OpenTelemetry-compatible destinations
 To start sending data to your destination, you'll need to create a destination in the Cloudflare dashboard.
@@ -91,3 +109,7 @@ This includes the following limits and pricing:
 | **Workers Free** | Not available | Not available | - |
 | **Workers Paid** | 10 million events per month included | 10 million events per month included | $0.05 per million additional events |
 
+## Known limitations
+OpenTelemetry data export is currently in beta. Please be aware of the following limitations:
+- **Metrics export not yet supported**: Exporting Worker infrastructure metrics and custom metrics via OpenTelemetry is not currently available. We are actively working to add metrics support in the future. 
+- **Limited OTLP support from some providers**: Some observability providers are still rolling out OTLP endpoint support. Check the [Available OpenTelemetry destinations](#available-opentelemetry-destinations) table above for current availability.

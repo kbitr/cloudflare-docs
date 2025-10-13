@@ -29,13 +29,15 @@ Before you begin, ensure you have:
 4. Select **Quickstart** then select **JavaScript**
 6. Click **Create a new token**
 7. Enter a name for your token (e.g., `cloudflare-workers-otel`) and click **create token**
+8. Click on **Close** without copying the token
+9. Copy and Save the value for `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_EXPORTER_OTLP_HEADERS` in the `Environment variables` code block as the OTel endpoint and as the Auth header value respectively
 
 
 ## Step 2: Set up destination 
 1. Navigate to your Cloudflare account's [Workers Observability](https://dash.cloudflare.com/?to=/:account/workers-and-pages/observability/pipelines) section
 2. Click **Add destination** and configure a destination name (e.g. `grafana-tracing`)
 3. From Grafana, copy your Otel endpoint, auth header, and auth value 
-  * Your OTEL endpoint will look like `https://otlp-gateway-prod-us-east-2.grafana.net/otlp` (append `/v1/traces for tracing and `/v1/logs` for logs) 
+  * Your OTEL endpoint will look like `https://otlp-gateway-prod-us-east-2.grafana.net/otlp` (append `/v1/traces` for traces and `/v1/logs` for logs) 
   * Your custom header should include: 
       * Your auth header name `Authorization`
       * Your auth header value `Basic MTMxxx...`

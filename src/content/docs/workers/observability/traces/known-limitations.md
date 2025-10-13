@@ -20,4 +20,7 @@ We are adding more automatic instrumentation for every part of the Workers platf
 ### Support for custom spans and attributes: 
 While automatic instrumentation covers the platform interactions, we know you need visibility into your own application logic too. We're working to support the [OpenTelemetry API](https://www.npmjs.com/package/@opentelemetry/api) to make it easier for you to instrument custom spans within your application. 
 
+### Span and attribute names subject to change
+As Workers tracing is currently in beta, span names and attribute names are not yet finalized. We may refine these names during the beta period to improve clarity and align with OpenTelemetry semantic conventions. We recommend reviewing the [spans and attributes documentation](/workers/observability/traces/spans-and-attributes) periodically for updates.
+
 ### 
