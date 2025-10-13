@@ -23,4 +23,5 @@ While automatic instrumentation covers the platform interactions, we know you ne
 ### Span and attribute names subject to change
 As Workers tracing is currently in beta, span names and attribute names are not yet finalized. We may refine these names during the beta period to improve clarity and align with OpenTelemetry semantic conventions. We recommend reviewing the [spans and attributes documentation](/workers/observability/traces/spans-and-attributes) periodically for updates.
 
-### 
+### Call outs 
+* 
