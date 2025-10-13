@@ -25,16 +25,10 @@ Below are common OTLP endpoint formats for popular observability providers. Refe
 | Provider | Traces Endpoint | Logs Endpoint |
 |----------|----------------|---------------|
 | [**Honeycomb**](/workers/observability/exporting-opentelemetry-data/honeycomb/) | `https://api.honeycomb.io/v1/traces` | `https://api.honeycomb.io/v1/logs` |
-| [**Grafana Cloud**](/workers/observability/exporting-opentelemetry-data/grafana-cloud/) | `https://otlp-gateway-{region}.grafana.net/otlp/v1/traces`[^1] | `https://otlp-gateway-{region}.grafana.net/otlp/v1/logs`[^1] |
-| **Axiom** | `https://api.axiom.co/v1/traces` | `https://api.axiom.co/v1/logs` |
-| **Datadog** | Not yet available. Pending release from Datadog[^2] | Not yet available. Pending release from Datadog[^2] |
-| **Sentry** | Not yet available. Pending release from Sentry[^3] | Not yet available. Pending release from Sentry[^3] |
-
-[^1]: Replace `{region}` with your Grafana Cloud stack region (e.g., `prod-us-east-0`)
-
-[^2]: Datadog's OTLP endpoints are currently being rolled out and may not be available for all accounts. Contact Datadog support to enable OTLP ingestion for your account.
-
-[^3]: Sentry's OTLP endpoints are currently being rolled out and may not be available for all accounts. Contact Sentry support to enable OTLP ingestion for your account.
+| [**Grafana Cloud**](/workers/observability/exporting-opentelemetry-data/grafana-cloud/) | `https://otlp-gateway-{region}.grafana.net/otlp/v1/traces`| `https://otlp-gateway-{region}.grafana.net/otlp/v1/logs`[^1] |
+| [**Axiom**](/workers/observability/exporting-opentelemetry-data/axiom/) | `https://api.axiom.co/v1/traces` | `https://api.axiom.co/v1/logs` |
+| **Datadog** | Not yet available. Pending release from Datadog | Not yet available. Pending release from Datadog |
+| **Sentry** | Not yet available. Pending release from Sentry | Not yet available. Pending release from Sentry |
 
 :::note[Authentication]
 Most providers require authentication headers. Refer to your provider's documentation for specific authentication requirements.

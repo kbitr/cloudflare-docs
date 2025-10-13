@@ -23,5 +23,6 @@ While automatic instrumentation covers the platform interactions, we know you ne
 ### Span and attribute names subject to change
 As Workers tracing is currently in beta, span names and attribute names are not yet finalized. We may refine these names during the beta period to improve clarity and align with OpenTelemetry semantic conventions. We recommend reviewing the [spans and attributes documentation](/workers/observability/traces/spans-and-attributes) periodically for updates.
 
-### Call outs 
-* 
+### Known bugs and other call outs 
+* There are currently are a few pieces of metadata that only apply to spans (e.g.`service.name`, `faas.name`), however, some may apply across all events. For example, when filtering/grouping on the Worker name across traces and logs, use `$metadata.service` as it will apply consistently across all event types.
+* While a trace is in progress, the event will show `Trace in Progress` on the root span. Please wait a few moments for the full trace to become available 
